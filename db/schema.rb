@@ -11,16 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420221435) do
+ActiveRecord::Schema.define(version: 20150427214927) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.string   "year"
     t.string   "run_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "movie_cover_file_name"
+    t.string   "movie_cover_content_type"
+    t.integer  "movie_cover_file_size"
+    t.datetime "movie_cover_updated_at"
   end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "rating",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "movie_id"
+  end
+
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -38,6 +53,10 @@ ActiveRecord::Schema.define(version: 20150420221435) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
