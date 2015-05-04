@@ -6,9 +6,9 @@
 
 <div class="row">
   <div class="col-xs-2 text-center">
-    <%= image_tag @movie.movie_cover.url(:medium) %>
-    <%= link_to 'Edit', edit_movie_path(@movie), class: "btn btn-warning btn-block" %>
-    <%= link_to 'Back', movies_path, class: "btn btn-primary btn-block" %>
+    <%= image_tag @movie.movie_cover.url(:medium), class: "img-responsive" %>
+    <%= link_to raw('<i class="fa fa-pencil-square"></i> Edit'), edit_movie_path(@movie), class: "btn btn-warning btn-block" %>
+    <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), movies_path, class: "btn btn-primary btn-block" %>
   </div>
 
   <div class="col-xs-10">
@@ -23,7 +23,7 @@
       <%= @movie.body %>
     </p>
 
-    <h2>Reviews</h2>
+    <h2><i class="fa fa-comments"></i> Reviews</h2>
     <%= form_for(Review.new, url: reviews_path) do |f| %>
       <div class="form-group">
         <%= f.label :comment, "Please review the movie" %><br>
